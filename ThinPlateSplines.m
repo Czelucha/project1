@@ -17,7 +17,6 @@ function [g, df] = ThinPlateSplines(data, lambda, meshStart, meshStep, meshEnd)
             K(i, j) = Eta(K(i, j));
         end
     end
-
     %Create P matrix
     P = ones(size(X, 2) + 1, size(X, 1));
     P(2:end, :) = X';
@@ -47,7 +46,7 @@ function [g, df] = ThinPlateSplines(data, lambda, meshStart, meshStep, meshEnd)
     for i = 1:size(F, 1)
         for j = 1:size(F, 2)
             for k = 1:length(alphaEst)
-                meshVec = [x(i), y(j)];
+                meshVec = [x(j), y(i)];
                 F(i, j) = F(i, j) + alphaEst(k) * Eta(norm(meshVec - X(k, :)));
             end
         end
